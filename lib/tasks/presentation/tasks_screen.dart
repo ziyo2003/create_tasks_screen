@@ -271,7 +271,6 @@ class _TaskScreenState extends State<TaskScreen>
                       return GestureDetector(
                           onTap: () {
                             Scaffold.of(context).openDrawer();
-                            //  Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyDrawer()));
                           },
                           child: SvgPicture.asset(AppIcons.hamburger));
                     }),
@@ -395,106 +394,6 @@ class _TaskScreenState extends State<TaskScreen>
   }
 }
 
-//
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:gap/gap.dart';
-//
-//
-// import '../../../models/loading.status.dart';
-// import '../../../models/priority.dart';
-// import '../../../models/task.dart';
-// import '../../../repository/task.dart';
-// import '../../../tasksBloc/tasks_bloc.dart';
-// import '../../../tasksBloc/tasks_event.dart';
-// import '../../../tasksBloc/tasks_state.dart';
-//
-// class App extends StatefulWidget {
-//   const App({super.key});
-//
-//   @override
-//   State<App> createState() => _AppState();
-// }
-//
-// class _AppState extends State<App> with SingleTickerProviderStateMixin {
-//   late TabController tabController;
-//
-//   @override
-//   void initState() {
-//     tabController = TabController(length: 2, vsync: this);
-//     super.initState();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocProvider(
-//       create: (context) => TaskBloc(repository: TaskRepository()),
-//       child: Builder(builder: (context) {
-//         return Scaffold(
-//           appBar: AppBar(
-//             bottom: TabBar(
-//               controller: tabController,
-//               tabs: const [
-//                 Tab(text: 'Upcoming'),
-//                 Tab(text: 'All'),
-//               ],
-//             ),
-//           ),
-//           body: BlocBuilder<TaskBloc, TaskState>(
-//             builder: (context, state) {
-//               switch (state.status) {
-//                 case LoadingStatus.pure:
-//                   context.read<TaskBloc>().add(LoadTasks());
-//                   return const SizedBox();
-//                 case LoadingStatus.loading:
-//                   return const Center(child: CupertinoActivityIndicator());
-//                 case LoadingStatus.loadedWithSuccess:
-//                   return TabBarView(
-//                     controller: tabController,
-//                     children: [
-//                       ListView.separated(
-//                         padding: const EdgeInsets.symmetric(
-//                           vertical: 20,
-//                           horizontal: 16,
-//                         ),
-//                         itemBuilder: (_, index) =>
-//                             TaskItem(task: state.upcomingTasks[index]),
-//                         separatorBuilder: (_, __) => const Gap(16),
-//                         itemCount: state.upcomingTasks.length,
-//                       ),
-//                       ListView.separated(
-//                         padding: const EdgeInsets.symmetric(
-//                           vertical: 20,
-//                           horizontal: 16,
-//                         ),
-//                         itemBuilder: (_, index) =>
-//                             TaskItem(task: state.allTasks[index]),
-//                         separatorBuilder: (_, __) => const Gap(16),
-//                         itemCount: state!.allTasks.length,
-//                       )
-//                     ],
-//                   );
-//                 case LoadingStatus.loadedWithFailure:
-//                   return const SizedBox();
-//                 default:
-//                   return const SizedBox();
-//               }
-//             },
-//           ),
-//         );
-//       }),
-//     );
-//   }
-//
-//   @override
-//   void dispose() {
-//     tabController.dispose();
-//     super.dispose();
-//   }
-// }
-//
 class TaskItem extends StatelessWidget {
   final TaskModel task;
   const TaskItem({
